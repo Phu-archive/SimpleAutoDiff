@@ -7,4 +7,6 @@ class Variables(BaseNumber):
     """
     def __init__(self, value):
         super().__init__(value)
+        if not(type(self.value) == int or type(self.value) == float):
+            raise TypeError("Variable has to be int or float!!")
         self.grad = 1

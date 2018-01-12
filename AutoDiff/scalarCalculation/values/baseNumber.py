@@ -12,3 +12,9 @@ class BaseNumber(ABC):
         When you forward a value, you get that value.
         """
         return self.value
+
+    def backward(self, grad):
+        pass
+
+    def get_grad(self):
+        pass

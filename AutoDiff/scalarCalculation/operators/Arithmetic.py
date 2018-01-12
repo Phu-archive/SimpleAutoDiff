@@ -18,8 +18,15 @@ class Add(ScalarOperator):
         """
         return self.operation1.forward() + self.operation2.forward()
 
-    def backward(self):
-        pass
+    def backward(self, grad):
+        """
+        Call backward on self.operation 1 and 2.
+        Given the gradient of "above" operation
+        """
+
+        self.operation1.backward(grad)
+        self.operation2.backward(grad)
+
 
 class Multiply(ScalarOperator):
     def __init__(self, operation1, operation2):
@@ -36,5 +43,6 @@ class Multiply(ScalarOperator):
         """
         return self.operation1.forward() * self.operation2.forward()
 
-    def backward(self):
-        pass
+    def backward(self, grad):
+        self.operation1.backward(self.operation2.forward())
+        self.operation2.backward(self.operation1.forward())

@@ -44,5 +44,5 @@ class Multiply(ScalarOperator):
         return self.operation1.forward() * self.operation2.forward()
 
     def backward(self, grad):
-        self.operation1.backward(self.operation2.forward())
-        self.operation2.backward(self.operation1.forward())
+        self.operation1.backward(self.operation2.forward()*grad)
+        self.operation2.backward(self.operation1.forward()*grad)

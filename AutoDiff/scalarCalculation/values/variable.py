@@ -14,6 +14,7 @@ class Variables(BaseNumber):
     def backward(self, grad):
         # Just store the grad data for further use.
         self.grad = grad
+        
 
     def get_grad(self):
         return self.grad

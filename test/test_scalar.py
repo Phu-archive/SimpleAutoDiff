@@ -6,7 +6,7 @@ sys.path.append("..")
 
 from AutoDiff.scalarCalculation.values import variable, constant
 from AutoDiff.scalarCalculation.operators import Arithmetic
-
+from AutoDiff.scalarCalculation.operators import sigmoid
 
 def test_add():
     test_var = variable.Variables(100)
@@ -66,3 +66,39 @@ def test_accessing_grad_simple_backward2():
 
     var_grad_1 = test_var_1.get_grad()
     assert var_grad_1 == 10
+
+def test_neuron_forward():
+    a = variable.Variables(1.0)
+    b = variable.Variables(2.0)
+    c = variable.Variables(-3.0)
+    x = variable.Variables(-1.0)
+    y = variable.Variables(3.0)
+
+    ax = Arithmetic.Multiply(a, x)
+    by = Arithmetic.Multiply(b, y)
+    axpby = Arithmetic.Add(ax, by)
+    axpbypc = Arithmetic.Add(axpby, c)
+    s = sigmoid.Sigmoid(axpbypc)
+
+    assert round(s.forward(), 4) == 0.8808
+
+def test_neuron_backward():
+    a = variable.Variables(1.0)
+    b = variable.Variables(2.0)
+    c = variable.Variables(-3.0)
+    x = variable.Variables(-1.0)
+    y = variable.Variables(3.0)
+
+    ax = Arithmetic.Multiply(a, x)
+    by = Arithmetic.Multiply(b, y)
+    axpby = Arithmetic.Add(ax, by)
+    axpbypc = Arithmetic.Add(axpby, c)
+    s = sigmoid.Sigmoid(axpbypc)
+
+    s.backward(1)
+
+    assert round(a.get_grad(), 3) == -0.105
+    assert round(b.get_grad(), 3) == 0.315
+    assert round(c.get_grad(), 3) == 0.105
+    assert round(x.get_grad(), 3) == 0.105
+    assert round(y.get_grad(), 3) == 0.210

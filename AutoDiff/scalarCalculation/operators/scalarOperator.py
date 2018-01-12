@@ -9,5 +9,5 @@ class ScalarOperator(ABC):
         pass
 
     @abstractmethod
-    def backward(self):
+    def backward(self, grad):
         pass

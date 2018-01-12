@@ -10,3 +10,10 @@ class Variables(BaseNumber):
         if not(type(self.value) == int or type(self.value) == float):
             raise TypeError("Variable has to be int or float!!")
         self.grad = 1
+
+    def backward(self, grad):
+        # Just store the grad data for further use.
+        self.grad = grad
+
+    def get_grad(self):
+        return self.grad

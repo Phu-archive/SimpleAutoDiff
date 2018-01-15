@@ -5,8 +5,7 @@ import pytest
 sys.path.append("..")
 
 from AutoDiff.scalarCalculation.values import variable, constant
-from AutoDiff.scalarCalculation.operators import Arithmetic
-from AutoDiff.scalarCalculation.operators import sigmoid
+from AutoDiff.scalarCalculation.operators import Arithmetic, sigmoid, square
 
 def test_add():
     test_var = variable.Variables(100)
@@ -102,3 +101,17 @@ def test_neuron_backward():
     assert round(c.get_grad(), 3) == 0.105
     assert round(x.get_grad(), 3) == 0.105
     assert round(y.get_grad(), 3) == 0.210
+
+def test_square():
+    a = variable.Variables(100)
+    b = square.Square(a)
+
+    assert b.forward() == 100**2
+
+def test_square_backward():
+    a = variable.Variables(100)
+    b = square.Square(a)
+
+    b.backward(1)
+
+    assert a.get_grad() == 2

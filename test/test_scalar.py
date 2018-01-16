@@ -102,6 +102,23 @@ def test_neuron_backward():
     assert round(x.get_grad(), 3) == 0.105
     assert round(y.get_grad(), 3) == 0.210
 
+def test_minus():
+    a = variable.Variables(100)
+    b = variable.Variables(10)
+
+    c = Arithmetic.Minus(a, b)
+    assert c.forward() == 100 - 10
+
+def test_minus_grad():
+    a = variable.Variables(100)
+    b = variable.Variables(10)
+
+    c = Arithmetic.Minus(a, b)
+    c.backward(1)
+
+    assert a.get_grad() == 1
+    assert b.get_grad() == -1
+
 def test_square():
     a = variable.Variables(100)
     b = square.Square(a)

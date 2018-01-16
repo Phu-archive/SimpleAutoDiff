@@ -8,4 +8,4 @@ class Square(ScalarOperator):
         return self.operation1.forward() * self.operation1.forward()
 
     def backward(self, grad):
-        self.operation1.backward(grad * 2)
+        self.operation1.backward(grad * 2 * self.operation1.forward())

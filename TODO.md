@@ -1,5 +1,10 @@
 There are going to be 4 phases.
 
+# TODO
+Fix a bug
+Reset a gradient
+Debug a gradient
+
 # First phase
 Multiple scalar variables auto differentiation system. I don't think that we should start with vectorized data. So I think that I will create a single neuron that is able to predict some linear regression.
 

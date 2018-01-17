@@ -11,3 +11,7 @@ class ScalarOperator(ABC):
     @abstractmethod
     def backward(self, grad):
         pass
+
+    @abstractmethod
+    def draw_graph(self, graph):
+        pass

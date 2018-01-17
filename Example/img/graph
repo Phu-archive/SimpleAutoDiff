@@ -1,0 +1,13 @@
+digraph {
+	Square
+	Minus
+	Add
+	Multiply
+	x_var -> Multiply
+	w -> Multiply
+	Multiply -> Add
+	b -> Add
+	y_var -> Minus
+	Add -> Minus
+	Minus -> Square
+}

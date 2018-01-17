@@ -131,4 +131,4 @@ def test_square_backward():
 
     b.backward(1)
 
-    assert a.get_grad() == 2
+    assert a.get_grad() == 2*100

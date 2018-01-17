@@ -2,11 +2,12 @@ from .scalarOperator import ScalarOperator
 import math
 
 class Sigmoid(ScalarOperator):
-    def __init__(self, operation1):
+    def __init__(self, operation1, name="Sigmoid"):
         """
         Getting the value evaluated (operation1.forward()) from operation1
         """
         self.operation1 = operation1
+        self.name = name
 
     def forward(self):
         """
@@ -21,3 +22,8 @@ class Sigmoid(ScalarOperator):
         """
 
         self.operation1.backward(grad * self.forward() * (1 - self.forward()))
+
+    def draw_graph(self, graph):
+        graph.node(self.name)
+        self.operation1.draw_graph(graph)
+        graph.edge(self.operation1.name, self.name)

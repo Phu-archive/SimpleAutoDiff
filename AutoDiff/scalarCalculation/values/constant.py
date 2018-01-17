@@ -6,8 +6,8 @@ class Constant(BaseNumber):
     Constant can't be change after initialized.
     """
 
-    def __init__(self, value):
-        super().__init__(value)
+    def __init__(self, value, name="Constant"):
+        super().__init__(value, name)
         if not (type(value) == int or type(value) == float):
             raise TypeError("Constant has to be int or float!!")
 

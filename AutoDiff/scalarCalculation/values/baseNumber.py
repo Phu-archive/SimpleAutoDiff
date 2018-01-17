@@ -4,8 +4,9 @@ class BaseNumber(ABC):
     """
     Base Class that represent the constant numbers and variables.
     """
-    def __init__(self, value):
+    def __init__(self, value, name):
         self.value = value
+        self.name = name
 
     def forward(self):
         """
@@ -18,3 +19,6 @@ class BaseNumber(ABC):
 
     def get_grad(self):
         pass
+
+    def draw_graph(self, graph):
+        graph.node(self.name)

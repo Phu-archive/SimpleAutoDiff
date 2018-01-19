@@ -19,4 +19,4 @@ class Variables(BaseNumber):
         return self.grad
 
     def draw_graph(self, graph):
-        pass
+        graph.node(self.name,style='filled',fillcolor='yellow',shape='square')

@@ -22,3 +22,6 @@ class Constant(BaseNumber):
     def backward(self, grad):
         # just ignore the data !!!
         pass
+
+    def draw_graph(self, graph):
+        graph.node(self.name,style='filled',fillcolor='cyan')

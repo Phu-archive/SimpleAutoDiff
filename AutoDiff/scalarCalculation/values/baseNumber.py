@@ -20,5 +20,6 @@ class BaseNumber(ABC):
     def get_grad(self):
         pass
 
+    @abstractmethod
     def draw_graph(self, graph):
-        graph.node(self.name)
+        pass
